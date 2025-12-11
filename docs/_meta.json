@@ -10,6 +10,16 @@
     "activeMatch": "/hello/"
   },
   {
+    "text": "Introduct",
+    "link": "/introduct/",
+    "activeMatch": "/introduct/"
+  },
+  {
+    "text": "base",
+    "link": "/base/",
+    "activeMatch": "/base/"
+  },
+  {
     "text": "API",
     "link": "https://rspress.dev/api/index.html"
   }
