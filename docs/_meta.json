@@ -15,9 +15,9 @@
     "activeMatch": "/introduct/"
   },
   {
-    "text": "base",
-    "link": "/base/",
-    "activeMatch": "/base/"
+    "text": "basic",
+    "link": "/basic/",
+    "activeMatch": "/basic/"
   },
   {
     "text": "API",
