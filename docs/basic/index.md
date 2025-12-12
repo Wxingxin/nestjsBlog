@@ -1,7 +1,8 @@
 # basic
 
 ## nestjs中的方法
-:::tips
+:::tip
+
 Controllers
 Providers
 Modules
@@ -11,6 +12,7 @@ Pipes
 Guards
 Interceptors
 Custom decorators
+
 :::
 
 这几种方法

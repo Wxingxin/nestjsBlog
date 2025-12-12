@@ -1,4 +1,5 @@
 [
   "index",
-  "middleware"
+  "middleware",
+  "../sql/index.md"
 ]

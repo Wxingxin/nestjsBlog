@@ -80,7 +80,7 @@ async function bootstrap() {
 }
 bootstrap();
 ```
-
+<!-- import -->
 :::tip IMPORT
 ` import { NestFactory } from "@nestjs/core";`
 
@@ -148,7 +148,7 @@ import { AppService } from "./app.service";
 })
 export class AppModule {}
 ```
-
+<!-- import -->
 :::tip IMPORT
 
 `import { Module } from "@nestjs/common";`
@@ -171,7 +171,7 @@ export class AppModule {}
 :::
 
 ---
-
+<!-- serve -->
 :::info SERVE
 
 ```js
