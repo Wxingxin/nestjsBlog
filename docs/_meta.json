@@ -1,26 +1,22 @@
 [
   {
-    "text": "Guide",
-    "link": "/guide/",
-    "activeMatch": "/guide/"
+    "text": "node",
+    "link": "/node/",
+    "activeMatch": "/node/"
   },
   {
-    "text": "Hello world",
-    "link": "/hello/",
-    "activeMatch": "/hello/"
+    "text": "express",
+    "link": "/express/",
+    "activeMatch": "/express/"
   },
   {
-    "text": "Introduct",
-    "link": "/introduct/",
-    "activeMatch": "/introduct/"
+    "text": "nestjs",
+    "link": "/nestjs/",
+    "activeMatch": "/nestjs/"
   },
   {
     "text": "basic",
     "link": "/basic/",
     "activeMatch": "/basic/"
-  },
-  {
-    "text": "API",
-    "link": "https://rspress.dev/api/index.html"
   }
 ]
