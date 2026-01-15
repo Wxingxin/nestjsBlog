@@ -1,29 +1,11 @@
-const blessed = require('blessed');
-const contrib = require('blessed-contrib');
+let a= '6230522080045762075'
+console.log(a.length)
 
-const screen = blessed.screen({
-    fullUnicode: true
-});
+let b = '6228412083026196161'
+console.log(b.length    )
 
-const lineChart = contrib.line({ 
-    style: { 
-        line: "yellow",
-        text: "green",
-        baseline: "blue"
-    },
-    label: '气温变化'
-})
+let c = '6230522080045762075';
+console.log(c.length)
 
-const data = {
-    x: ['10 月 1 日', '10 月 2 日', '10 月 3 日', '10 月 4 日'],
-    y: [6, 13, 8, 10]
-}
-
-screen.append(lineChart);
-lineChart.setData([data]);
-
-screen.key('C-c', function() {
-    screen.destroy();
-});
-
-screen.render();
+let d = '6228412083026196161'
+console.log(d.length)
