@@ -10,18 +10,19 @@
 
 ### Morgan：**HTTP 访问日志（Access Log）**
 
-* 关注点：
+- 关注点：
 
-  * 谁访问了接口
-  * 什么时候
-  * 访问了什么路径
-  * 返回状态码
-  * 响应耗时
-* 特点：
+  - 谁访问了接口
+  - 什么时候
+  - 访问了什么路径
+  - 返回状态码
+  - 响应耗时
 
-  * **中间件级别**
-  * 对 Express 请求生命周期“零侵入”
-  * 日志格式偏“文本行”
+- 特点：
+
+  - **中间件级别**
+  - 对 Express 请求生命周期“零侵入”
+  - 日志格式偏“文本行”
 
 👉 Morgan 本质上是 **Nginx access.log 的 Node 版**
 
@@ -29,16 +30,17 @@
 
 ### Winston：**应用日志（Application Log）**
 
-* 关注点：
+- 关注点：
 
-  * 业务逻辑日志（info / warn）
-  * 错误日志（error / stack）
-  * 调试日志（debug）
-* 特点：
+  - 业务逻辑日志（info / warn）
+  - 错误日志（error / stack）
+  - 调试日志（debug）
 
-  * **结构化日志（JSON）**
-  * 多 transport（console / file / http / elk）
-  * 日志级别可控
+- 特点：
+
+  - **结构化日志（JSON）**
+  - 多 transport（console / file / http / elk）
+  - 日志级别可控
 
 👉 Winston 是 **应用内部的“日志总线”**
 
@@ -52,18 +54,18 @@
 
 ## 2️⃣ 在 Express 项目中，它们“能覆盖什么”
 
-| 场景                    | Morgan | Winston |
-| --------------------- | ------ | ------- |
-| HTTP 请求记录             | ✅      | ❌       |
-| 响应时间统计                | ✅      | ⚠️（需手写） |
-| 业务流程日志                | ❌      | ✅       |
-| 错误堆栈                  | ❌      | ✅       |
-| 日志分级（info/warn/error） | ❌      | ✅       |
-| 输出到文件                 | ⚠️（间接） | ✅       |
-| 输出到 ELK / 云日志         | ❌      | ✅       |
-| 结构化 JSON              | ❌      | ✅       |
+| 场景                        | Morgan     | Winston      |
+| --------------------------- | ---------- | ------------ |
+| HTTP 请求记录               | ✅         | ❌           |
+| 响应时间统计                | ✅         | ⚠️（需手写） |
+| 业务流程日志                | ❌         | ✅           |
+| 错误堆栈                    | ❌         | ✅           |
+| 日志分级（info/warn/error） | ❌         | ✅           |
+| 输出到文件                  | ⚠️（间接） | ✅           |
+| 输出到 ELK / 云日志         | ❌         | ✅           |
+| 结构化 JSON                 | ❌         | ✅           |
 
-👉 **覆盖 80%～90% Web 后端日志需求**
+👉 **覆盖 80%～ 90% Web 后端日志需求**
 
 ---
 
@@ -71,42 +73,45 @@
 
 ### ❌ 1. 分布式追踪（Trace / Span）
 
-* 无法原生支持：
+- 无法原生支持：
 
-  * 请求链路追踪（traceId / spanId）
-  * 微服务调用关系
-* 需要：
+  - 请求链路追踪（traceId / spanId）
+  - 微服务调用关系
 
-  * OpenTelemetry
-  * Jaeger / Zipkin
+- 需要：
+
+  - OpenTelemetry
+  - Jaeger / Zipkin
 
 ---
 
 ### ❌ 2. 高并发日志性能
 
-* Winston 是同步写（文件 / console）
-* 在极高 QPS（几万+）下：
+- Winston 是同步写（文件 / console）
+- 在极高 QPS（几万+）下：
 
-  * 可能成为瓶颈
-* 解决方式：
+  - 可能成为瓶颈
 
-  * pino（更快）
-  * 异步日志管道（stdout → 日志系统）
+- 解决方式：
+
+  - pino（更快）
+  - 异步日志管道（stdout → 日志系统）
 
 ---
 
 ### ❌ 3. 业务维度指标（Metrics）
 
-* 日志 ≠ 指标
-* 无法直接回答：
+- 日志 ≠ 指标
+- 无法直接回答：
 
-  * QPS？
-  * 错误率？
-  * P99 延迟？
-* 需要：
+  - QPS？
+  - 错误率？
+  - P99 延迟？
 
-  * Prometheus + Grafana
-  * 或 APM（Datadog / NewRelic）
+- 需要：
+
+  - Prometheus + Grafana
+  - 或 APM（Datadog / NewRelic）
 
 ---
 
@@ -118,10 +123,10 @@
 
 适用特征：
 
-* 单体应用
-* QPS < 5k
-* 少量服务实例
-* React + Express 典型 Web 项目
+- 单体应用
+- QPS < 5k
+- 少量服务实例
+- React + Express 典型 Web 项目
 
 ✅ **推荐组合**
 
@@ -133,12 +138,12 @@
 
 推荐升级点：
 
-* Morgan → 作为 **请求采集**
-* Winston → **统一 JSON + traceId**
-* 接入：
+- Morgan → 作为 **请求采集**
+- Winston → **统一 JSON + traceId**
+- 接入：
 
-  * 日志集中系统（ELK / Loki）
-  * 简单 tracing（requestId）
+  - 日志集中系统（ELK / Loki）
+  - 简单 tracing（requestId）
 
 ---
 
@@ -148,10 +153,10 @@
 
 需要：
 
-* Pino（高性能）
-* OpenTelemetry
-* APM
-* 结构化日志 + Trace + Metrics
+- Pino（高性能）
+- OpenTelemetry
+- APM
+- 结构化日志 + Trace + Metrics
 
 ---
 
@@ -163,17 +168,14 @@
 import morgan from "morgan";
 import logger from "./logger.js"; // winston
 
-morgan.token("body", req => JSON.stringify(req.body));
+morgan.token("body", (req) => JSON.stringify(req.body));
 
 app.use(
-  morgan(
-    ":method :url :status :res[content-length] - :response-time ms",
-    {
-      stream: {
-        write: message => logger.http(message.trim())
-      }
-    }
-  )
+  morgan(":method :url :status :res[content-length] - :response-time ms", {
+    stream: {
+      write: (message) => logger.http(message.trim()),
+    },
+  })
 );
 ```
 
@@ -193,8 +195,8 @@ const logger = createLogger({
   ),
   transports: [
     new transports.Console(),
-    new transports.File({ filename: "error.log", level: "error" })
-  ]
+    new transports.File({ filename: "error.log", level: "error" }),
+  ],
 });
 ```
 
@@ -208,7 +210,7 @@ app.use((err, req, res, next) => {
     message: err.message,
     stack: err.stack,
     path: req.path,
-    method: req.method
+    method: req.method,
   });
 
   res.status(500).json({ message: "Internal Server Error" });
@@ -224,28 +226,27 @@ app.use((err, req, res, next) => {
 
 只有在下面情况才需要升级：
 
-* 微服务
-* 超高并发
-* 分布式链路追踪
-* 可观测性要求极高
+- 微服务
+- 超高并发
+- 分布式链路追踪
+- 可观测性要求极高
 
 ---
 
 如果你愿意，下一步我可以直接帮你：
 
-* 给你一套 **Express 日志目录结构规范**
-* 或对比 **winston vs pino（是否值得你现在换）**
-* 或直接按你现在做的“X 社交平台后端”给一套**日志最佳实践模板**
+- 给你一套 **Express 日志目录结构规范**
+- 或对比 **winston vs pino（是否值得你现在换）**
+- 或直接按你现在做的“X 社交平台后端”给一套**日志最佳实践模板**
 
 你可以直接说你更关心哪一项。
 
-
 下面给你一套“够用、不复杂、能直接落地到 Express 项目”的 **morgan + winston** 组合方案，目标是：
 
-* **morgan 负责 HTTP 访问日志**
-* **winston 负责应用日志 + 错误日志**
-* 生产环境写文件、开发环境控制台更友好
-* 代码结构清晰：`logger.js` + `app.js`（或 `server.js`）
+- **morgan 负责 HTTP 访问日志**
+- **winston 负责应用日志 + 错误日志**
+- 生产环境写文件、开发环境控制台更友好
+- 代码结构清晰：`logger.js` + `app.js`（或 `server.js`）
 
 > 默认使用 ESM（`type: "module"`）。如果你用 CommonJS，我也在末尾给了改法要点。
 
@@ -283,11 +284,7 @@ const devFormat = combine(
   })
 );
 
-const prodFormat = combine(
-  timestamp(),
-  errors({ stack: true }),
-  json()
-);
+const prodFormat = combine(timestamp(), errors({ stack: true }), json());
 
 const logger = winston.createLogger({
   level: isProd ? "info" : "debug",
@@ -298,7 +295,10 @@ const logger = winston.createLogger({
     // 生产环境建议落文件（可选，但很常用）
     ...(isProd
       ? [
-          new winston.transports.File({ filename: "logs/error.log", level: "error" }),
+          new winston.transports.File({
+            filename: "logs/error.log",
+            level: "error",
+          }),
           new winston.transports.File({ filename: "logs/app.log" }),
         ]
       : []),
@@ -330,7 +330,8 @@ const isProd = process.env.NODE_ENV === "production";
 morgan.token("remote-addr", (req) => req.ip || req.connection?.remoteAddress);
 
 const formatDev = ":method :url :status - :response-time ms";
-const formatProd = ':remote-addr - :method :url :status :res[content-length] - :response-time ms';
+const formatProd =
+  ":remote-addr - :method :url :status :res[content-length] - :response-time ms";
 
 export const requestLogger = morgan(isProd ? formatProd : formatDev, {
   stream: morganStream,
@@ -442,8 +443,8 @@ mkdir logs
 
 Windows PowerShell 设置环境变量更标准的方式（可选）：
 
-* 推荐装 `cross-env`：`npm i -D cross-env`
-* 然后：
+- 推荐装 `cross-env`：`npm i -D cross-env`
+- 然后：
 
 ```json
 "dev": "cross-env NODE_ENV=development node src/server.js",
@@ -454,9 +455,9 @@ Windows PowerShell 设置环境变量更标准的方式（可选）：
 
 ## 8) CommonJS 改法要点（如果你不是 ESM）
 
-* 把 `import` 改成 `const ... = require(...)`
-* `export default` 改成 `module.exports = ...`
-* `export const` 改成 `module.exports = { ... }` 或拆分导出
+- 把 `import` 改成 `const ... = require(...)`
+- `export default` 改成 `module.exports = ...`
+- `export const` 改成 `module.exports = { ... }` 或拆分导出
 
 如果你告诉我你项目是 ESM 还是 CommonJS（看 `package.json` 有没有 `"type": "module"`），我可以把上面代码直接给你输出成对应版本。
 
