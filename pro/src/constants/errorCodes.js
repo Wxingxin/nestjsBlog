@@ -1,0 +1,5 @@
+﻿module.exports = {
+  UNAUTHORIZED: 'UNAUTHORIZED',
+  FORBIDDEN: 'FORBIDDEN',
+  VALIDATION: 'VALIDATION',
+};
