@@ -13,10 +13,5 @@
     "text": "nestjs",
     "link": "/nestjs/",
     "activeMatch": "/nestjs/"
-  },
-  {
-    "text": "basic",
-    "link": "/basic/",
-    "activeMatch": "/basic/"
   }
 ]
