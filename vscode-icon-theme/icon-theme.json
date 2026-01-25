@@ -1,0 +1,10 @@
+{
+  "iconDefinitions": {
+    "nestjs-controller": {
+      "iconPath": "./icons/nestjs-controller.svg"
+    }
+  },
+  "fileExtensions": {
+    "controller.ts": "nestjs-controller"
+  }
+}
