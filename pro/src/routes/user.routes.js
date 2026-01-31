@@ -8,3 +8,4 @@ const router = express.Router();
 router.get('/me', requireAuth, getProfile);
 
 module.exports = router;
+export default  userRouter = router; 
