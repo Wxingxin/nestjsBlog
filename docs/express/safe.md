@@ -3,19 +3,17 @@
 `npm i express-mongo-sanitize`
 
 ```js
-const mongoSanitize = require('express-mongo-sanitize');
+const mongoSanitize = require("express-mongo-sanitize");
 
 app.use(mongoSanitize());
 ```
 
 ## express-xss-sanitizer
 
-
 `npm i express-xss-sanitizer`
 
 ```js
-
-const { xss } = require('express-xss-sanitizer');
+const { xss } = require("express-xss-sanitizer");
 
 app.use(xss());
 ```
@@ -25,13 +23,15 @@ app.use(xss());
 `npm i cors`
 
 ```js
-const  cors = require('cors')
- 
-app.use(cors())
+const cors = require("cors");
+
+app.use(cors());
 ```
 
 ## helmet
+
 `npm i helmet`
+
 ```js
 import helmet from "helmet";
 
@@ -39,16 +39,17 @@ const app = express();
 
 app.use(helmet());
 ```
+
 # 一、express-rate-limit 是什么（一句话）
 
 > **express-rate-limit = 基于请求频率的限流中间件**
 
 它解决的是：
 
-* ❌ 暴力请求
-* ❌ 刷接口
-* ❌ 简单 DoS
-* ❌ 登录撞库（基础版）
+- ❌ 暴力请求
+- ❌ 刷接口
+- ❌ 简单 DoS
+- ❌ 登录撞库（基础版）
 
 ⚠️ 重要定位：
 
@@ -60,11 +61,11 @@ app.use(helmet());
 
 如果你的 Express 项目满足任意一条：
 
-* 🌐 公网 API
-* 🔐 登录 / 注册接口
-* 🔍 搜索接口
-* 📩 发送短信 / 邮件
-* 💳 贵接口（消耗资源）
+- 🌐 公网 API
+- 🔐 登录 / 注册接口
+- 🔍 搜索接口
+- 📩 发送短信 / 邮件
+- 💳 贵接口（消耗资源）
 
 👉 **一定要用**
 
@@ -87,7 +88,7 @@ import rateLimit from "express-rate-limit";
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 分钟
-  max: 100,                // 每个 IP 100 次
+  max: 100, // 每个 IP 100 次
 });
 
 app.use(limiter);
@@ -148,9 +149,9 @@ app.use(rateLimit({ max: 100 }));
 
 问题：
 
-* 登录不够严
-* 搜索被误伤
-* 内部接口也被限制
+- 登录不够严
+- 搜索被误伤
+- 内部接口也被限制
 
 ---
 
@@ -162,14 +163,14 @@ rateLimit({
   max: 100,
 
   standardHeaders: true, // 返回 RateLimit-* 头
-  legacyHeaders: false,  // 关闭 X-RateLimit-*
+  legacyHeaders: false, // 关闭 X-RateLimit-*
 });
 ```
 
 为什么？
 
-* 兼容标准
-* 前端可感知剩余次数
+- 兼容标准
+- 前端可感知剩余次数
 
 ---
 
@@ -217,10 +218,10 @@ rateLimit({
 
 如果你在：
 
-* Nginx
-* Cloudflare
-* Vercel
-* Docker
+- Nginx
+- Cloudflare
+- Vercel
+- Docker
 
 👉 **必须设置：**
 
@@ -230,8 +231,8 @@ app.set("trust proxy", 1);
 
 否则：
 
-* 所有用户共享一个 IP
-* 限流直接失效
+- 所有用户共享一个 IP
+- 限流直接失效
 
 ---
 
@@ -239,8 +240,8 @@ app.set("trust proxy", 1);
 
 默认内存存储：
 
-* ❌ 重启即失效
-* ❌ 多实例不共享
+- ❌ 重启即失效
+- ❌ 多实例不共享
 
 ### 用 Redis（推荐）
 
@@ -283,8 +284,8 @@ controller
 
 原因：
 
-* 便宜的先执行
-* 防刷先挡
+- 便宜的先执行
+- 防刷先挡
 
 ---
 
@@ -292,10 +293,10 @@ controller
 
 它 **做不到**：
 
-* ❌ Bot 行为分析
-* ❌ 设备指纹
-* ❌ 智能风控
-* ❌ 分布式攻击判断
+- ❌ Bot 行为分析
+- ❌ 设备指纹
+- ❌ 智能风控
+- ❌ 分布式攻击判断
 
 👉 这正是 Arcjet / Cloudflare 的领域。
 
