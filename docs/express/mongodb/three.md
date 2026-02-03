@@ -58,6 +58,12 @@ const user = new User({ username: "wjx", email: "a@b.com" });
 await user.save();
 ```
 
+```js
+await new User({ username: "wjx", email: "a@b.com" }).save();
+
+```
+
+
 👉 `create()` = **`new + save` 的语法糖**
 
 ---

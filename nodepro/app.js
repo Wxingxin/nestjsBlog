@@ -1,56 +1,33 @@
-import prompts from "prompts";
+import express from "express";
+import cors from "cors";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-const result = await prompts({
-  type: "text",
-  name: "projectName",
-  message: "Project name?",
-  initial: "my-app",
+const a = jwt.sign(
+  {
+    id: 1,
+    name: "John Doe",
+  },
+  "secret",
+  {
+    expiresIn: "1h",
+    algorithm: "HS256",
+  },
+);
+
+console.log(a);
+
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzcwMDMzMjIzLCJleHAiOjE3NzAwMzY4MjN9.irQFdC-Bi5VlSXf2546Wxu2xJwdxJvs_VI9VJ_ane1M";
+
+const b = jwt.verify(token, "secret",{
+  algorithms: ["HS256"],
 });
+console.log(b);
 
-console.log(result.projectName);
-
-const { port } = await prompts({
-  type: "number",
-  name: "port",
-  message: "Server port?",
-  initial: 3000,
-  min: 1,
-  max: 65535,
-  validate: (value) => value.length < 3 && "Name must be at least 3 characters",
-});
-console.log(port)
-
-const { framework } = await prompts({
-  type: "select",
-  name: "framework",
-  message: "Choose a framework",
-  choices: [
-    { title: "React", value: "react" },
-    { title: "Vue", value: "vue" },
-    { title: "Svelte", value: "svelte" },
-  ],
-});
-console.log(framework)
-
-const { features } = await prompts({
-  type: "multiselect",
-  name: "features",
-  message: "Select features",
-  choices: [
-    { title: "TypeScript", value: "ts" },
-    { title: "ESLint", value: "eslint" },
-    { title: "Prettier", value: "prettier" },
-  ],
-  min: 1,
-});
-console.log(features)
-
-const { useDocker } = await prompts({
-  type: "toggle",
-  name: "useDocker",
-  message: "Use Docker?",
-  initial: true,
-  active: "yes",
-  inactive: "no",
-});
-console.log(useDocker)
+const c = jwt.decode(token, {complete: true});
+console.log(c);
+// const app = express();
+// app.listen(3000, () => {
+//   console.log('Server is running on port 3000');
+// })
